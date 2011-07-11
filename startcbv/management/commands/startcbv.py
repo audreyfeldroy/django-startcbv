@@ -3,6 +3,14 @@ import os
 from django.core.management.base import copy_helper, CommandError, LabelCommand
 from django.utils.importlib import import_module
 
+from django.template import Context
+from django.template.loader import get_template
+
+def model_generator(model_name):
+    template = get_template('startcbv/models.py')
+    c = Context({'model_name': model_name})
+    return template.render(c)
+
 class Command(LabelCommand):
     print "startcbv blah"
 #    help = "Creates a Django app directory structure for the given app name in the current directory."
@@ -16,6 +24,14 @@ class Command(LabelCommand):
 
     def handle_label(self, app_name, directory=None, **options):
         print app_name
+        print model_generator(app_name)
+
+
+
+
+
+
+
 #        if directory is None:
 #            directory = os.getcwd()
 
