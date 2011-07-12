@@ -53,7 +53,19 @@ class Command(LabelCommand):
         target = open(app_name + "/urls.py", 'w')
         target.write(urls_generator(app_name, app_name.capitalize().rstrip("s")))
         target.close()
+        target = open(app_name + "/views.py", 'w')
+        target.write(views_generator(app_name, app_name.capitalize().rstrip("s")))
+        target.close()
 
+        template_dir = 'templates/' + app_name
+        os.makedirs(template_dir)
+        target = open(template_dir + "/" + app_name.rstrip("s") + "_list.html", 'w')
+        target.write(list_template_generator(app_name, app_name.capitalize().rstrip("s")))
+        target.close()
+
+        target = open(template_dir + "/" + app_name.rstrip("s") + "_detail.html", 'w')
+        target.write(detail_template_generator(app_name, app_name.capitalize().rstrip("s")))
+        target.close()
 
 # TODO: rather than using rstrip to create the singular form from the plural, 
 # use something like http://code.activestate.com/recipes/577781-pluralize-word-convert-singular-word-to-its-plural/
