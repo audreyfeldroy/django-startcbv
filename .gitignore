@@ -4,3 +4,6 @@
 local_settings.py
 test_project/things/
 test_project/templates/
+_templates
+_static
+_build
