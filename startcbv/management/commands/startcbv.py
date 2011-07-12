@@ -41,16 +41,14 @@ class Command(LabelCommand):
 
     def handle_label(self, app_name, directory=None, **options):
         print app_name
+        os.makedirs(app_name)
 #        print models_generator(app_name, app_name.capitalize().rstrip("s"))
 #        print urls_generator(app_name, app_name.capitalize().rstrip("s"))
 #        print views_generator(app_name, app_name.capitalize().rstrip("s"))
 #        print list_template_generator(app_name, app_name.capitalize().rstrip("s"))
 #        print detail_template_generator(app_name, app_name.capitalize().rstrip("s"))
-        os.makedirs(app_name)
-        filename = app_name + "/blah.txt"
-        print filename
-        target = open(filename, 'w')
-        target.write(app_name)
+        target = open(app_name + "/models.py", 'w')
+        target.write(models_generator(app_name, app_name.capitalize().rstrip("s")))
         target.close()
 
 # TODO: rather than using rstrip to create the singular form from the plural, 
