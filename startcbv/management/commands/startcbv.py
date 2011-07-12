@@ -24,6 +24,13 @@ def views_generator(app_name, model_name):
                  'app_name': app_name})
     return template.render(c)
 
+def list_template_generator(app_name, model_name):
+    template = get_template('startcbv/_list.html')
+    c = Context({'model_name': model_name,
+                 'app_name': app_name})
+    return template.render(c)
+
+
 class Command(LabelCommand):
     print "startcbv blah"
 
@@ -31,7 +38,8 @@ class Command(LabelCommand):
         print app_name
 #        print models_generator(app_name, app_name.capitalize())
 #        print urls_generator(app_name, app_name.capitalize())
-        print views_generator(app_name, app_name.capitalize())
+#        print views_generator(app_name, app_name.capitalize())
+        print list_template_generator(app_name, app_name.capitalize())
 
 
 

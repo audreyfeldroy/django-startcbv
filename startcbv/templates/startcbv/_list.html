@@ -1,0 +1,19 @@
+{% templatetag openblock %} extends "base_generic.html" {% templatetag closeblock %}
+
+{% templatetag openblock %} block title {% templatetag closeblock %}
+All {{ model_name }}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+
+{% templatetag openblock %} block content {% templatetag closeblock %}
+<h1>All {{ model_name }}</h1>
+
+{% templatetag openblock %} if latest_{{ model_name.lower }}_list {% templatetag closeblock %}
+    <ul>
+    {% templatetag openblock %} for {{ model_name.lower }} in latest_{{ model_name.lower }}_list {% templatetag closeblock %}
+        <li><a href="{% templatetag openblock %} url {{ model_name.lower }}_detail {{ model_name.lower }}.slug {% templatetag closeblock %}">{% templatetag openvariable %} {{ model_name.lower }}.name {% templatetag closevariable %}</a></li>
+    {% templatetag openblock %} endfor {% templatetag closeblock %}
+    </ul>
+{% templatetag openblock %} else {% templatetag closeblock %}
+    <p>No {{ app_name }} are available.</p>
+{% templatetag openblock %} endif {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
