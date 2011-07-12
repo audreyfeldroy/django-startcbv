@@ -24,6 +24,12 @@ def views_generator(app_name, model_name):
                  'app_name': app_name})
     return template.render(c)
 
+def admin_generator(app_name, model_name):
+    template = get_template('startcbv/admin.py')
+    c = Context({'model_name': model_name,
+                 'app_name': app_name})
+    return template.render(c)
+
 def list_template_generator(app_name, model_name):
     template = get_template('startcbv/_list.html')
     c = Context({'model_name': model_name,
@@ -36,8 +42,12 @@ def detail_template_generator(app_name, model_name):
                  'app_name': app_name})
     return template.render(c)
 
+def touch(fname, times = None):
+    with file(fname, 'a'):
+        os.utime(fname, times)
+
 class Command(LabelCommand):
-    print "startcbv blah"
+    print "Generating your app with class-based views..."
 
     def handle_label(self, app_name, directory=None, **options):
         print app_name
@@ -56,6 +66,11 @@ class Command(LabelCommand):
         target = open(app_name + "/views.py", 'w')
         target.write(views_generator(app_name, app_name.capitalize().rstrip("s")))
         target.close()
+        target = open(app_name + "/admin.py", 'w')
+        target.write(admin_generator(app_name, app_name.capitalize().rstrip("s")))
+        target.close()
+
+        touch(app_name + "/__init__.py")
 
         template_dir = 'templates/' + app_name
         os.makedirs(template_dir)

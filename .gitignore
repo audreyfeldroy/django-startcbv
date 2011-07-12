@@ -2,3 +2,5 @@
 *.db
 *.log
 local_settings.py
+test_project/things/
+test_project/templates/
