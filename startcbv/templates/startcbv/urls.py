@@ -2,7 +2,7 @@ from django.conf.urls.defaults import *
 from django.views.generic import DetailView, ListView
 from {{ app_name }}.models import {{ model_name }}
 
-urlpatterns = patterns('{{ model_name }}.views',
+urlpatterns = patterns('{{ app_name }}.views',
     url(regex=r'^$',
         view=ListView.as_view(
             queryset={{ model_name }}.objects.order_by('-pub_date'),

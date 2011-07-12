@@ -50,6 +50,10 @@ class Command(LabelCommand):
         target = open(app_name + "/models.py", 'w')
         target.write(models_generator(app_name, app_name.capitalize().rstrip("s")))
         target.close()
+        target = open(app_name + "/urls.py", 'w')
+        target.write(urls_generator(app_name, app_name.capitalize().rstrip("s")))
+        target.close()
+
 
 # TODO: rather than using rstrip to create the singular form from the plural, 
 # use something like http://code.activestate.com/recipes/577781-pluralize-word-convert-singular-word-to-its-plural/
