@@ -46,7 +46,10 @@ class Command(LabelCommand):
 #        print views_generator(app_name, app_name.capitalize().rstrip("s"))
 #        print list_template_generator(app_name, app_name.capitalize().rstrip("s"))
 #        print detail_template_generator(app_name, app_name.capitalize().rstrip("s"))
-        target = open('blah.txt', 'w')
+        os.makedirs(app_name)
+        filename = app_name + "/blah.txt"
+        print filename
+        target = open(filename, 'w')
         target.write(app_name)
         target.close()
 
