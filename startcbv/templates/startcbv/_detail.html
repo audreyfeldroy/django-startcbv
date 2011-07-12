@@ -1,0 +1,14 @@
+{% templatetag openblock %} extends "base_generic.html" {% templatetag closeblock %}
+
+{% templatetag openblock %} block title {% templatetag closeblock %}
+{% templatetag openvariable %} {{ model_name.lower }}.name {% templatetag closevariable %} : {{ model_name }}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+
+{% templatetag openblock %} block content {% templatetag closeblock %}
+<h1>{% templatetag openvariable %} {{ model_name.lower }}.name {% templatetag closevariable %}</h1>
+
+<h3>Date Published</h3>
+<p> {% templatetag openvariable %} {{ model_name.lower }}.pub_date {% templatetag closevariable %}</p>
+
+{% templatetag openblock %} endblock {% templatetag closeblock %}
+

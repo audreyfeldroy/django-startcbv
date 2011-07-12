@@ -30,16 +30,22 @@ def list_template_generator(app_name, model_name):
                  'app_name': app_name})
     return template.render(c)
 
+def detail_template_generator(app_name, model_name):
+    template = get_template('startcbv/_detail.html')
+    c = Context({'model_name': model_name,
+                 'app_name': app_name})
+    return template.render(c)
 
 class Command(LabelCommand):
     print "startcbv blah"
 
     def handle_label(self, app_name, directory=None, **options):
         print app_name
-#        print models_generator(app_name, app_name.capitalize())
-#        print urls_generator(app_name, app_name.capitalize())
-#        print views_generator(app_name, app_name.capitalize())
-        print list_template_generator(app_name, app_name.capitalize())
+#        print models_generator(app_name, app_name.capitalize().rstrip("s"))
+#        print urls_generator(app_name, app_name.capitalize().rstrip("s"))
+#        print views_generator(app_name, app_name.capitalize().rstrip("s"))
+#        print list_template_generator(app_name, app_name.capitalize().rstrip("s"))
+        print detail_template_generator(app_name, app_name.capitalize().rstrip("s"))
 
-
-
+# TODO: rather than using rstrip to create the singular form from the plural, 
+# use something like http://code.activestate.com/recipes/577781-pluralize-word-convert-singular-word-to-its-plural/
