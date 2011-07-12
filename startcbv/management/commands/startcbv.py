@@ -45,7 +45,10 @@ class Command(LabelCommand):
 #        print urls_generator(app_name, app_name.capitalize().rstrip("s"))
 #        print views_generator(app_name, app_name.capitalize().rstrip("s"))
 #        print list_template_generator(app_name, app_name.capitalize().rstrip("s"))
-        print detail_template_generator(app_name, app_name.capitalize().rstrip("s"))
+#        print detail_template_generator(app_name, app_name.capitalize().rstrip("s"))
+        target = open('blah.txt', 'w')
+        target.write(app_name)
+        target.close()
 
 # TODO: rather than using rstrip to create the singular form from the plural, 
 # use something like http://code.activestate.com/recipes/577781-pluralize-word-convert-singular-word-to-its-plural/
