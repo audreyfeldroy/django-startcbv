@@ -7,3 +7,5 @@ test_project/templates/
 _templates
 _static
 _build
+dist
+django_startcbv.egg-info
