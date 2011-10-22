@@ -8,4 +8,5 @@ _templates
 _static
 _build
 dist
+build
 django_startcbv.egg-info

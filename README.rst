@@ -5,9 +5,8 @@ django-startcbv
 Installation
 ------------
 
-TODO: package this up.  At some point it will be::
+Add django-startcbv==0.1 to requirements.txt, then just::
 
-    Add django-startcbv==0.1 to requirements.txt
     pip install -r requirements.txt
 
 Usage
@@ -32,3 +31,8 @@ Then::
 
     python manage.py syncdb
     python manage.py runserver
+
+License
+-------
+
+This code is licensed under the MIT License.

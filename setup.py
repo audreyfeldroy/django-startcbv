@@ -7,7 +7,7 @@ LONG_DESCRIPTION = open('README.rst').read()
 setup(
     name='django-startcbv',
     version=version,
-    description="django-startcbv",
+    description="Management command to start an app with class-based views.",
     long_description=LONG_DESCRIPTION,
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
