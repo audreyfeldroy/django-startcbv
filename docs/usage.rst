@@ -9,6 +9,7 @@ Create a base.html template in templates/base.html.  It should contain a title a
     <title>
     {% block title %}{% endblock %}
     </title>
+    </head>
 
     <body>
     {% block content %}{% endblock %}
