@@ -72,7 +72,7 @@ class Command(LabelCommand):
 
         touch(app_name + "/__init__.py")
 
-        template_dir = 'templates/' + app_name
+        template_dir = app_name + '/templates/' + app_name
         os.makedirs(template_dir)
         target = open(template_dir + "/" + app_name.rstrip("s") + "_list.html", 'w')
         target.write(list_template_generator(app_name, app_name.capitalize().rstrip("s")))
