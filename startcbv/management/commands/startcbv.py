@@ -54,7 +54,12 @@ class Command(LabelCommand):
     def handle_label(self, app_name, directory=None, **options):
         print app_name
 
-        app_dir = getattr(settings, "APPS_DIR_ROOT", app_name)
+        app_dir = app_name
+        apps_dir = getattr(settings, "APPS_DIR", None)
+
+        if apps_dir != None:
+            app_dir = apps_dir + "/" + app_name
+
         os.makedirs(app_dir)
 #        print models_generator(app_name, app_name.capitalize().rstrip("s"))
 #        print urls_generator(app_name, app_name.capitalize().rstrip("s"))
