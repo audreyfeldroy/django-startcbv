@@ -6,6 +6,8 @@ from django.utils.importlib import import_module
 from django.template import Context
 from django.template.loader import get_template
 
+import settings
+
 def models_generator(app_name, model_name):
     template = get_template('startcbv/models.py')
     c = Context({'model_name': model_name,
@@ -51,35 +53,39 @@ class Command(LabelCommand):
 
     def handle_label(self, app_name, directory=None, **options):
         print app_name
-        os.makedirs(app_name)
+
+        app_dir_root = getattr(settings, "APPS_DIR_ROOT", app_name)
+
+        app_dir = app_dir_root
+        os.makedirs(app_dir)
 #        print models_generator(app_name, app_name.capitalize().rstrip("s"))
 #        print urls_generator(app_name, app_name.capitalize().rstrip("s"))
 #        print views_generator(app_name, app_name.capitalize().rstrip("s"))
 #        print list_template_generator(app_name, app_name.capitalize().rstrip("s"))
 #        print detail_template_generator(app_name, app_name.capitalize().rstrip("s"))
-        target = open(app_name + "/models.py", 'w')
-        target.write(models_generator(app_name, app_name.capitalize().rstrip("s")))
+        target = open(app_dir + "/models.py", 'w')
+        target.write(models_generator(app_dir, app_name.capitalize().rstrip("s")))
         target.close()
-        target = open(app_name + "/urls.py", 'w')
-        target.write(urls_generator(app_name, app_name.capitalize().rstrip("s")))
+        target = open(app_dir + "/urls.py", 'w')
+        target.write(urls_generator(app_dir, app_name.capitalize().rstrip("s")))
         target.close()
-        target = open(app_name + "/views.py", 'w')
-        target.write(views_generator(app_name, app_name.capitalize().rstrip("s")))
+        target = open(app_dir + "/views.py", 'w')
+        target.write(views_generator(app_dir, app_name.capitalize().rstrip("s")))
         target.close()
-        target = open(app_name + "/admin.py", 'w')
-        target.write(admin_generator(app_name, app_name.capitalize().rstrip("s")))
+        target = open(app_dir + "/admin.py", 'w')
+        target.write(admin_generator(app_dir, app_name.capitalize().rstrip("s")))
         target.close()
 
-        touch(app_name + "/__init__.py")
+        touch(app_dir + "/__init__.py")
 
-        template_dir = app_name + '/templates/' + app_name
+        template_dir = app_dir + '/templates/' + app_name
         os.makedirs(template_dir)
         target = open(template_dir + "/" + app_name.rstrip("s") + "_list.html", 'w')
-        target.write(list_template_generator(app_name, app_name.capitalize().rstrip("s")))
+        target.write(list_template_generator(app_dir, app_name.capitalize().rstrip("s")))
         target.close()
 
         target = open(template_dir + "/" + app_name.rstrip("s") + "_detail.html", 'w')
-        target.write(detail_template_generator(app_name, app_name.capitalize().rstrip("s")))
+        target.write(detail_template_generator(app_dir, app_name.capitalize().rstrip("s")))
         target.close()
 
 # TODO: rather than using rstrip to create the singular form from the plural, 
